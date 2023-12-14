@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HalcyonAgile\FilamentExport\Tests;
 
+use HalcyonAgile\FilamentExport\FilamentExportServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use HalcyonAgile\FilamentExport\FilamentExportServiceProvider;
 
 class TestCase extends Orchestra
 {
