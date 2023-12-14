@@ -20,6 +20,7 @@
         "filament/filament": "^2.17.55",
         "illuminate/contracts": "^10.0",
         "maatwebsite/excel": "^3.1.50",
+        "pxlrbt/filament-excel": "^1.1.13",
         "spatie/laravel-package-tools": "^1.16.1"
     },
     "require-dev": {
@@ -37,8 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "HalcyonAgile\\FilamentExport\\": "src/",
-            "HalcyonAgile\\FilamentExport\\Database\\Factories\\": "database/factories/"
+            "HalcyonAgile\\FilamentExport\\": "src/"
         }
     },
     "autoload-dev": {
@@ -75,11 +75,9 @@
     "extra": {
         "laravel": {
             "providers": [
-                "HalcyonAgile\\FilamentExport\\FilamentExportServiceProvider"
-            ],
-            "aliases": {
-                "FilamentExport": "HalcyonAgile\\FilamentExport\\Facades\\FilamentExport"
-            }
+                "HalcyonAgile\\FilamentExport\\FilamentExportServiceProvider",
+                "HalcyonAgile\\FilamentExport\\ExportEventServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
