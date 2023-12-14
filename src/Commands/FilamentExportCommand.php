@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace HalcyonAgile\FilamentExport\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentExportCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-export';
 
     public $description = 'My command';
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace HalcyonAgile\FilamentExport;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use HalcyonAgile\FilamentExport\Commands\FilamentExportCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentExportServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('filament-export')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_filament-export_table')
+            ->hasCommand(FilamentExportCommand::class);
     }
 }
