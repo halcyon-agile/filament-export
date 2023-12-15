@@ -6,6 +6,7 @@ namespace HalcyonAgile\FilamentExport;
 
 use HalcyonAgile\FilamentExport\Commands\FilamentExportCommand;
 use HalcyonAgile\FilamentExport\Http\Controllers\DownloadExportController;
+use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -35,6 +36,7 @@ class FilamentExportServiceProvider extends PackageServiceProvider
         Route::get(
             config('filament-export.http.route.path').'/{path}',
             DownloadExportController::class)
+//            ->middleware(ValidateSignature::relative())
             ->middleware(config('filament-export.http.route.middleware'))
             ->where('path', '.*')
             ->name(config('filament-export.http.route.name'));

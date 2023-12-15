@@ -11,4 +11,9 @@ final class Helpers
     }
 
     public static ?\Closure $beforeGenerateDownloadUrl = null;
+
+    public static function fileName(string $path): string
+    {
+        return substr($path, 37);
+    }
 }

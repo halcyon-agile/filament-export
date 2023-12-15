@@ -9,6 +9,7 @@ use Filament\Notifications\Notification as FilamentNotification;
 use HalcyonAgile\FilamentExport\Helpers;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
@@ -29,27 +30,33 @@ class ExportFinishedNotification extends Notification implements ShouldQueue
     /**
      * @throws \Exception
      */
-    public function toDatabase(object $notifiable): array
+    public function toDatabase(Model $notifiable): array
     {
         return FilamentNotification::make()
             ->success()
             ->title('Export finished')
-            ->body(trans('Your file [:filename] is ready for download.', ['filename' => $this->fileName]))
+            ->body($this->line())
             ->icon('heroicon-o-download')
             ->actions([
                 Action::make('download')
+                    ->translateLabel()
                     ->button()
                     ->url($this->downloadUrl()),
             ])
             ->getDatabaseMessage();
     }
 
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(Model $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->greeting('Export finished')
-            ->line(trans('Your file [:filename] is ready for download.', ['filename' => $this->fileName]))
-            ->action('Download', $this->downloadUrl());
+            ->greeting(trans('Export finished'))
+            ->line($this->line())
+            ->action(trans('Download'), $this->downloadUrl());
+    }
+
+    public function line(): string
+    {
+        return trans('Your file [:filename] is ready for download.', ['filename' => Helpers::fileName($this->fileName)]);
     }
 
     protected function downloadUrl(): string
