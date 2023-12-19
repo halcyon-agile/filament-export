@@ -37,7 +37,7 @@ trait ExportsRecords
 
     protected bool $isQueued = false;
 
-    protected int $chunkSize = 100;
+    protected int $chunkSize = 1_000;
 
     /**
      * @param  array<int, string>  $headings

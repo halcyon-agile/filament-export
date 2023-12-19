@@ -29,7 +29,7 @@ readonly class DefaultExport implements FromQuery, ShouldQueue, WithCustomChunkS
         private string $modelClass,
         private array $headings,
         private SerializableClosure $mapUsing,
-        private int $chunkSize = 100,
+        private int $chunkSize,
         private ?SerializableClosure $query = null,
         private ?array $recordIds = null,
         private array $tags = [],
