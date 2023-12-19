@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace HalcyonAgile\FilamentExport;
 
-use HalcyonAgile\FilamentExport\Commands\FilamentExportCommand;
+use HalcyonAgile\FilamentExport\Commands\PruneExportCommand;
 use HalcyonAgile\FilamentExport\Http\Controllers\DownloadExportController;
 use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +18,7 @@ class FilamentExportServiceProvider extends PackageServiceProvider
         $package
             ->name('filament-export')
             ->hasConfigFile()
-            ->hasCommand(FilamentExportCommand::class);
+            ->hasCommand(PruneExportCommand::class);
     }
 
     public function packageBooted(): void

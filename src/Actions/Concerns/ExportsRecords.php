@@ -39,6 +39,9 @@ trait ExportsRecords
 
     protected int $chunkSize = 1_000;
 
+    /** @var array<int, non-empty-string> */
+    protected array $tags = [];
+
     /**
      * @param  array<int, string>  $headings
      *
@@ -138,7 +141,8 @@ trait ExportsRecords
             mapUsing: new SerializableClosure($this->mapUsing),
             chunkSize: $this->chunkSize,
             query: $this->query ? new SerializableClosure($this->query) : null,
-            recordIds: $recordIds
+            recordIds: $recordIds,
+            tags: $this->tags
         );
     }
 
@@ -159,7 +163,7 @@ trait ExportsRecords
             export: $exportClass,
             filePath: Helpers::fullPath($fileName),
             disk: config('filament-export.temporary_files.disk'),
-            writerType: $writerType
+            writerType: $writerType,
         )
             ->chain([fn () => event(new ExportFinishedEvent($user, $fileName))]);
 
@@ -190,6 +194,16 @@ trait ExportsRecords
     public function fileName(string|Closure $fileName): self
     {
         $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * @param  array<int, non-empty-string>  $tags
+     */
+    public function tags(array $tags): static
+    {
+        $this->tags = $tags;
 
         return $this;
     }
