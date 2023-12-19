@@ -22,7 +22,7 @@ class ExportFinishedNotification extends Notification implements ShouldQueue
     {
     }
 
-    public function via(object $notifiable): array
+    public function via(Model $notifiable): array
     {
         return ['database', 'mail'];
     }
@@ -54,7 +54,7 @@ class ExportFinishedNotification extends Notification implements ShouldQueue
             ->action(trans('Download'), $this->downloadUrl());
     }
 
-    public function line(): string
+    private function line(): string
     {
         return trans('Your file [:filename] is ready for download.', ['filename' => $this->fileName]);
     }

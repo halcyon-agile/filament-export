@@ -6,7 +6,7 @@ namespace HalcyonAgile\FilamentExport\Events;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ExportFinishedEvent
+readonly class ExportFinishedEvent
 {
     public function __construct(
         public Model $notifiable,
