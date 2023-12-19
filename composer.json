@@ -20,7 +20,6 @@
         "filament/filament": "^2.17.55",
         "illuminate/contracts": "^10.0",
         "maatwebsite/excel": "^3.1.50",
-        "pxlrbt/filament-excel": "^1.1.13",
         "spatie/laravel-package-tools": "^1.16.1"
     },
     "require-dev": {
@@ -61,6 +60,7 @@
             "@php vendor/bin/testbench serve"
         ],
         "analyse": "vendor/bin/phpstan analyse",
+        "analyse-generate-baseline": "vendor/bin/phpstan analyse --generate-baseline",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/pint"

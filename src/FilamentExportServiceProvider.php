@@ -23,22 +23,12 @@ class FilamentExportServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        // TODO: make PR on official package (pxlrbt/filament-excel) to allow for custom disk
-        if (
-            config('filament-export.disk_name') === 'filament-excel' ||
-            ! in_array(config('filament-export.disk_name'), array_keys(config('filesystems.disks')))
-        ) {
-            config([
-                'filesystems.disks.'.config('filament-export.disk_name') => config('filesystems.disks.s3'),
-            ]);
-        }
-
         Route::get(
-            config('filament-export.http.route.path').'/{path}',
+            config('filament-export.http.route.path').'/{fileName}',
             DownloadExportController::class)
+            ->where('fileName', '.*')
 //            ->middleware(ValidateSignature::relative())
             ->middleware(config('filament-export.http.route.middleware'))
-            ->where('path', '.*')
             ->name(config('filament-export.http.route.name'));
     }
 }

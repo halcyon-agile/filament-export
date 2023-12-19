@@ -12,8 +12,8 @@ final class Helpers
 
     public static ?\Closure $beforeGenerateDownloadUrl = null;
 
-    public static function fileName(string $path): string
+    public static function fullPath(string $fileName): string
     {
-        return substr($path, 37);
+        return config('filament-export.temporary_files.base_directory').'/'.$fileName;
     }
 }

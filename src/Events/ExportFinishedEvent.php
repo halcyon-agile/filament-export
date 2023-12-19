@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class ExportFinishedEvent
 {
     public function __construct(
-        public string $filename,
         public Model $notifiable,
+        public string $filename,
     ) {
     }
 }

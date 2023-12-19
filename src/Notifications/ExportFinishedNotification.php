@@ -56,7 +56,7 @@ class ExportFinishedNotification extends Notification implements ShouldQueue
 
     public function line(): string
     {
-        return trans('Your file [:filename] is ready for download.', ['filename' => Helpers::fileName($this->fileName)]);
+        return trans('Your file [:filename] is ready for download.', ['filename' => $this->fileName]);
     }
 
     protected function downloadUrl(): string
@@ -68,7 +68,7 @@ class ExportFinishedNotification extends Notification implements ShouldQueue
         return URL::temporarySignedRoute(
             config('filament-export.http.route.name'),
             now()->minutes(config('filament-export.expires_in_minute')),
-            ['path' => $this->fileName]
+            ['fileName' => $this->fileName]
         );
     }
 

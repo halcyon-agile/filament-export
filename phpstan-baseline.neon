@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Class HalcyonAgile\\\\FilamentExport\\\\Export\\\\DefaultExport implements generic interface Maatwebsite\\\\Excel\\\\Concerns\\\\WithMapping but does not specify its types\\: RowType$#"
+			count: 1
+			path: src/Export/DefaultExport.php
+
+		-
+			message: "#^Cannot call method name\\(\\) on array\\<string\\>\\|Illuminate\\\\Routing\\\\Route\\.$#"
+			count: 1
+			path: src/FilamentExportServiceProvider.php

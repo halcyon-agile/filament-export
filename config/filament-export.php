@@ -1,9 +1,16 @@
 <?php
 
 return [
-    'expires_in_minute' => 30,
+    'temporary_files' => [
 
-    'disk_name' => 's3',
+        'disk' => null,
+
+        'base_directory' => 'filament-export',
+    ],
+
+    'user_timezone_field' => 'timezone',
+
+    'expires_in_minute' => 30,
 
     'http' => [
         'route' => [

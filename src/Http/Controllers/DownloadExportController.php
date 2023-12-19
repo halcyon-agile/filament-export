@@ -9,9 +9,16 @@ use Illuminate\Support\Facades\Storage;
 
 class DownloadExportController
 {
-    public function __invoke(string $path): mixed
+    public function __invoke(string $fileName): mixed
     {
-        return Storage::disk(config('filament-export.disk_name'))
-            ->download($path, Helpers::fileName($path));
+        $path = Helpers::fullPath($fileName);
+
+        $storage = Storage::disk(config('filament-export.temporary_files.disk'));
+
+        if ($storage->exists($path)) {
+            return $storage->download($path, $fileName);
+        }
+
+        abort(404);
     }
 }
