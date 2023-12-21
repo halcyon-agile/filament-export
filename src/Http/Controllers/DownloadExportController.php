@@ -16,7 +16,13 @@ class DownloadExportController
         $storage = Storage::disk(config('filament-export.temporary_files.disk'));
 
         if ($storage->exists($path)) {
-            return $storage->download($path, $fileName);
+            try {
+                return $storage->download($path, $fileName);
+            } catch (\Exception $e) {
+                report($e);
+
+                abort(500, 'Failed to download export.');
+            }
         }
 
         abort(404);
