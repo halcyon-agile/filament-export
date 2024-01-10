@@ -10,14 +10,14 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'HalcyonAgile\\FilamentExport\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
+    //    protected function setUp(): void
+    //    {
+    //        parent::setUp();
+    //
+    //        Factory::guessFactoryNamesUsing(
+    //            fn (string $modelName) => 'HalcyonAgile\\FilamentExport\\Database\\Factories\\'.class_basename($modelName).'Factory'
+    //        );
+    //    }
 
     protected function getPackageProviders($app)
     {
