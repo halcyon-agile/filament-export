@@ -12,12 +12,12 @@ return [
 
     'expires_in_minute' => 30,
 
-    'http' => [
-        'route' => [
-            'name' => 'filament-export.download',
-            'path' => 'admin/export/download',
-            'middleware' => []
-        ]
-    ]
+//    'http' => [
+//        'route' => [
+//            'name' => 'filament-export.download',
+//            'path' => 'admin/export/download',
+//            'middleware' => []
+//        ]
+//    ]
 
 ];

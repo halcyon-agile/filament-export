@@ -12,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Storage;
 
 class ExportFinishedNotification extends Notification implements ShouldQueue
 {
@@ -65,11 +65,12 @@ class ExportFinishedNotification extends Notification implements ShouldQueue
             value(Helpers::$beforeGenerateDownloadUrl);
         }
 
-        return URL::temporarySignedRoute(
-            config('filament-export.http.route.name'),
-            now()->minutes(config('filament-export.expires_in_minute')),
-            ['fileName' => $this->fileName]
-        );
+        return Storage::disk(config('filament-export.temporary_files.disk'))
+            ->temporaryUrl(
+                Helpers::fullPath($this->fileName),
+                now()->minutes(config('filament-export.expires_in_minute')),
+                ['ResponseContentDisposition' => 'attachment']
+            );
     }
 
     //    /**

@@ -21,15 +21,15 @@ class FilamentExportServiceProvider extends PackageServiceProvider
             ->hasCommand(PruneExportCommand::class);
     }
 
-    public function packageBooted(): void
-    {
-        Route::get(
-            config('filament-export.http.route.path').'/{fileName}',
-            DownloadExportController::class
-        )
-            ->where('fileName', '.*')
-//            ->middleware(ValidateSignature::relative())
-            ->middleware(config('filament-export.http.route.middleware'))
-            ->name(config('filament-export.http.route.name'));
-    }
+    //    public function packageBooted(): void
+    //    {
+    //        Route::get(
+    //            config('filament-export.http.route.path').'/{fileName}',
+    //            DownloadExportController::class
+    //        )
+    //            ->where('fileName', '.*')
+    ////            ->middleware(ValidateSignature::relative())
+    //            ->middleware(config('filament-export.http.route.middleware'))
+    //            ->name(config('filament-export.http.route.name'));
+    //    }
 }
