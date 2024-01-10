@@ -14,6 +14,6 @@ final class Helpers
 
     public static function fullPath(string $fileName): string
     {
-        return config('filament-export.temporary_files.base_directory').'/'.$fileName;
+        return config('filament-export.temporary_files.base_directory').DIRECTORY_SEPARATOR.$fileName;
     }
 }

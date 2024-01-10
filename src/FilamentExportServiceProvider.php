@@ -25,7 +25,8 @@ class FilamentExportServiceProvider extends PackageServiceProvider
     {
         Route::get(
             config('filament-export.http.route.path').'/{fileName}',
-            DownloadExportController::class)
+            DownloadExportController::class
+        )
             ->where('fileName', '.*')
 //            ->middleware(ValidateSignature::relative())
             ->middleware(config('filament-export.http.route.middleware'))
