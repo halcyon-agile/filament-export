@@ -68,7 +68,7 @@ class ExportFinishedNotification extends Notification implements ShouldQueue
         return Storage::disk(config('filament-export.temporary_files.disk'))
             ->temporaryUrl(
                 Helpers::fullPath($this->fileName),
-                now()->minutes(config('filament-export.expires_in_minute')),
+                Helpers::now()->minutes(config('filament-export.expires_in_minute')),
                 ['ResponseContentDisposition' => 'attachment']
             );
     }

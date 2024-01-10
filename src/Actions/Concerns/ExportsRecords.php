@@ -218,9 +218,7 @@ trait ExportsRecords
 
         /** @phpstan-ignore-next-line */
         $modelLabel = Str::kebab($this->getPluralModelLabel());
-        $dateTime = now(
-            Filament::auth()->user()?->{config('filament-export.user_timezone_field')}
-        )->toDateTimeString();
+        $dateTime = Helpers::now()->toDateTimeString();
         $fileExtension = Str::lower($writerType);
 
         return $modelLabel.'-'.$dateTime.'.'.$fileExtension;
