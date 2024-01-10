@@ -13,8 +13,6 @@ final class Helpers
     {
     }
 
-    public static ?\Closure $beforeGenerateDownloadUrl = null;
-
     public static function fullPath(string $fileName): string
     {
         return config('filament-export.temporary_files.base_directory').DIRECTORY_SEPARATOR.$fileName;

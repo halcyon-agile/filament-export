@@ -61,10 +61,6 @@ class ExportFinishedNotification extends Notification implements ShouldQueue
 
     protected function downloadUrl(): string
     {
-        if (Helpers::$beforeGenerateDownloadUrl !== null) {
-            value(Helpers::$beforeGenerateDownloadUrl);
-        }
-
         return Storage::disk(config('filament-export.temporary_files.disk'))
             ->temporaryUrl(
                 Helpers::fullPath($this->fileName),
