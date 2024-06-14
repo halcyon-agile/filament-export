@@ -43,12 +43,15 @@ trait ExportsRecords
     protected array $tags = [];
 
     /**
-     * @param  array<int, string>  $headings
+     * @param  array<int, string>|Closure  $headings
      *
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
      */
-    public function mapUsing(array $headings, Closure $mapUsing): self
+    public function mapUsing(array|Closure $headings, Closure $mapUsing): self
     {
+        if ($headings instanceof Closure) {
+            $headings = $this->evaluate($headings);
+        }
         $this->headings = $headings;
         $this->mapUsing = $mapUsing;
 
