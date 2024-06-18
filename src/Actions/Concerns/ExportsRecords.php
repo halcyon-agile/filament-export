@@ -26,8 +26,8 @@ trait ExportsRecords
 
     protected string|Closure|null $fileName = null;
 
-    /** @var array<int, string> */
-    protected array $headings;
+    // /** @var array<int, string> */
+    protected Closure|array $headings;
 
     protected Closure $mapUsing;
 
@@ -43,16 +43,21 @@ trait ExportsRecords
     protected array $tags = [];
 
     /**
-     * @param  array<int, string>  $headings
+     * @param  Closure|array<int, string>  $headings
      *
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
      */
-    public function mapUsing(array $headings, Closure $mapUsing): self
+    public function mapUsing(Closure|array $headings, Closure $mapUsing): self
     {
         $this->headings = $headings;
         $this->mapUsing = $mapUsing;
 
         return $this;
+    }
+
+    protected function getHeading(): array
+    {
+        return $this->evaluate($this->headings);
     }
 
     protected function buildExportForm(): array
@@ -137,7 +142,7 @@ trait ExportsRecords
 
         return new DefaultExport(
             modelClass: $model,
-            headings: $this->headings,
+            headings: $this->getHeading(),
             mapUsing: new SerializableClosure($this->mapUsing),
             chunkSize: $this->chunkSize,
             query: $this->query ? new SerializableClosure($this->query) : null,
