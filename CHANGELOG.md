@@ -2,6 +2,14 @@
 
 All notable changes to `filament-export` will be documented in this file.
 
+## v2.0.0 - 2024-11-26
+
+### What's Changed
+
+* add suport filament v3 by @rbiscocho in https://github.com/halcyon-agile/filament-export/pull/8
+
+**Full Changelog**: https://github.com/halcyon-agile/filament-export/compare/v1.2.0...v2.0.0
+
 ## v1.2.0 - 2024-06-18
 
 ### What's Changed
